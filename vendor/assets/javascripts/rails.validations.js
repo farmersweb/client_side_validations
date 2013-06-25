@@ -458,11 +458,30 @@
           return options.message;
         }
       },
+      /*
+      * THIS IS A PATCH FROM: https://github.com/bcardarella/client_side_validations/issues/53
+      * Addresses Devise password confirmation
+      * Can remove if updating to Rails 4
+      */
       confirmation: function(element, options) {
-        if (element.val() !== jQuery("#" + (element.attr('id')) + "_confirmation").val()) {
-          return options.message;
-        }
-      },
+          // Original code:
+          // if (element.val() !== jQuery("#" + (element.attr('id')) + "_confirmation").val()) {
+          //   return options.message;
+          // }
+          // New code:
+          var passwordValue = element.val()
+          var confirmationValue = jQuery('#' + element.attr('id') + '_confirmation').val();
+          if (confirmationValue == '') {
+            // confirmation not filled in yet so don't do anything
+          } else if ((event.type == 'keyup') && confirmationValue.length < passwordValue.length) {
+            // not finished typing confirmation yet so don't do anything
+          } else {
+            // blur event for confirmation, or confirmation exceeds password - ie. should have finished typing confirmation
+            if (passwordValue !== confirmationValue) {
+              return options.message;
+            }
+          };
+        },
       uniqueness: function(element, options) {
         var form, matches, name, name_prefix, name_suffix, valid, value;
         name = element.attr('name');

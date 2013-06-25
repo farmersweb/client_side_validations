@@ -1,5 +1,7 @@
 # ClientSideValidations #
 
+This fork addresses issues with Devise password confirmation validators and Rails 3.2.x as well as a 404 error when checking for uniqueness.
+
 [![Build Status](https://secure.travis-ci.org/bcardarella/client_side_validations.png?branch=3-2-stable)](http://travis-ci.org/bcardarella/client_side_validations)
 [![Dependency Status](https://gemnasium.com/bcardarella/client_side_validations.png?travis)](https://gemnasium.com/bcardarella/client_side_validations)
 [![Code Climate](https://codeclimate.com/github/bcardarella/client_side_validations.png)](https://codeclimate.com/github/bcardarella/client_side_validations)

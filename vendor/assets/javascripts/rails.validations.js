@@ -560,12 +560,14 @@
           name = options['class'] + '[' + name.split('[')[1];
         }
         data[name] = element.val();
-        if (jQuery.ajax({
+        response = jQuery.ajax({
           url: ClientSideValidations.remote_validators_url_for('uniqueness'),
           data: data,
           async: false,
           cache: false
-        }).status === 200) {
+        });
+
+        if (response.responseText == "false") {
           return options.message;
         }
       }

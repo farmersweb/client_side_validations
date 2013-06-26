@@ -392,12 +392,14 @@ window.ClientSideValidations.validators =
         name = options['class'] + '[' + name.split('[')[1] if options['class']
         data[name] = element.val()
 
-        if jQuery.ajax({
+        response = jQuery.ajax({
           url: ClientSideValidations.remote_validators_url_for('uniqueness')
           data: data,
           async: false
           cache: false
-        }).status == 200
+        })
+
+        if response == "false"
           return options.message
 
 window.ClientSideValidations.remote_validators_url_for = (validator) ->
